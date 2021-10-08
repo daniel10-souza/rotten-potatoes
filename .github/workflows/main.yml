@@ -42,5 +42,11 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG }}
   
+      - name: Deploy to kubernetes cluster
+        uses: Azure/k8s-deploy@v1.3
+        with:
+          images: daniel10souza/rotten-potatoes:${{ github.run_number }}
+          manifests: |
+            k8s/deployment.yaml
   
-  
+    
