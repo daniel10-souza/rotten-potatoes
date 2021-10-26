@@ -1,0 +1,45 @@
+#Informar a versão do compose
+version: '3.9'
+#Criar/declarar o volume
+volumes:
+  mongo_vol:
+#Criar/declarar a rede
+networks: 
+  produto_net:
+    driver: bridge
+
+#Criar/Declarar os services
+services:
+  rotten-potatoes:
+    image: daniel10souza/rotten-potatoes:${TAG} #Posso usar também variável:%{TAG} antes estava assim: ...:v1
+    build:
+      dockerfile: ./Dockerfile
+      context: ./
+    ports:
+     - 5000:5000
+    networks:
+     - produto_net
+
+#Fazer uma dependência para a execução do compose, pois o banco precisa ser criado primeiro
+    depends_on: 
+     - mongodb
+    environment:
+      MONGODB_DB: admin
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      MONGODB_USERNAME: mongouser
+      MONGODB_PASSWORD: mongopwd
+
+  #Criar o banco
+  mongodb:
+    image: mongo:4.4.6
+    ports:
+    - 27017:27017  #aqui coloquei apenas para me conectar ao banco pela minha máquina
+    networks:
+     - produto_net
+    #Declaração do volume
+    volumes:
+    - mongo_vol:/data/db
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: mongouser
+        MONGO_INITDB_ROOT_PASSWORD: mongopwd
