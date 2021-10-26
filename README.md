@@ -13,3 +13,5 @@ MONGODB_PASSWORD => Senha do MongoDB
 
 Comando para subir a aplicação
 docker-compose --env-file ./.env up -d
+*No caso do .env é preciso criar um arquivo .env na raiz para poder usar o parâmetro
+
