@@ -8,4 +8,11 @@ pipeline { /* os estágios da pipeline estarão nesse bloco */
             }         
         }
     }    
-}  
+    stages { /* inicia a criação das etapas */
+        stage('Deploy-Kubernetes') { /* primeira etapa */
+            steps { /* define os passos a serem executados nessa etapa */
+               kubernetesDeploy(configs: '**k8s/***', kubeconfigId: 'kubeconfig') /* 'pega' a fonte do projeto */
+            }         
+        }
+    }    
+}
