@@ -8,11 +8,4 @@ pipeline { /* os estágios da pipeline estarão nesse bloco */
             }         
         }
     }    
-        stage('Deploy Kubernetes') {
-            steps {
-                script {
-                    kubernetesDeploy(configs: "**/k8s/**", kubeconfigId: "kubeconfig") /*faz o deploy, utilziando a credencial do kubeconfig no Jenkins e passando a pasta com os manifestos*/
-                }                  
-            }   
-        }
-    }
+}  
