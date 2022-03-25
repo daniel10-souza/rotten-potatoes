@@ -18,5 +18,6 @@ pipeline { /* os estágios da pipeline estarão nesse bloco */
                     kubernetesDeploy(configs: "**/k8s/**", kubeconfigId: "kubeconfig") /*faz o deploy, utilziando a credencial do kubeconfig no Jenkins e passando a pasta com os manifestos*/
                 }
             }
+        }
     }
-}
+}   
