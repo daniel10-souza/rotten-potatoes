@@ -14,9 +14,6 @@ pipeline { /* os estágios da pipeline estarão nesse bloco */
                     cloud 'kubernetes' /*nome do cloud provider*/
                 }
             }
-            environment{
-                tag_version = "${env.BUILD_ID}" /* Define a tag a ser usada no deploy da aplicação */
-            }
             steps {
                 script {
                     sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/api/deployment.yaml' /*insere a tag no arquivo de deployment*/
