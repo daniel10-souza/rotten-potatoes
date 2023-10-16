@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: daniel10souza/rotten-potatoes:{{tag}}
+          image: daniel10souza/rotten-potatoes:latest
           ports:
             - containerPort: 5000
           env:
@@ -79,5 +79,5 @@ spec:
   - port: 80
     targetPort: 5000
     nodePort: 30000
-  type: LoadBalancer
+  type: NotePort
   
